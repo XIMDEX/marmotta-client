@@ -1,6 +1,6 @@
 {
   "name": "ximdex/marmotta-client",
-  "description": "Marmotta PHP Client",
+  "description": "Apache Marmotta PHP Client",
   "minimum-stability": "dev",
   "license": "Apache",
   "authors": [
