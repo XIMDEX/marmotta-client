@@ -28,6 +28,8 @@ use \MarmottaClient\Exceptions\ContentFormatException;
 use Guzzle\Http\Client;
 use Guzzle\Http\Message\BadResponseException;
 
+use MarmottaClient\Util\RdfJson ;
+
 /**
  * Created by IntelliJ IDEA.
  * User: sschaffe
@@ -108,17 +110,18 @@ class ResourceClient
     public /* Metadata */ function getResourceMetadata($uri) {
         try {
             $client = new Client();
+
             $request = $client->get($this->getServiceUrl($uri),array(
                 "User-Agent"   => "Marmotta Client Library (PHP)",
-                "Accept" => "application/json; rel=meta"
+                "Accept" => "application/rdf+json; rel=meta"
             ));
             // set authentication if given in configuration
-            if(!_isset($this->config->getUsername())) {
+            if(!empty($this->config->getUsername())) {
                 $request->setAuth($this->config->getUsername(),$this->config->getPassword());
             }
             $response = $request->send();
 
-            return decode_metadata($uri,$response->getBody(true));
+            return RdfJson::decode_metadata($uri,$response->getBody(true));
         } catch(BadResponseException $ex) {
             if($ex->getResponse()->getStatusCode() == 404) {
                 throw new NotFoundException("could not retrieve resource metadata for resource $uri; it does not exist");
@@ -236,7 +239,7 @@ class ResourceClient
             "User-Agent"   => "Marmotta Client Library (PHP)",
         ));
         // set authentication if given in configuration
-        if(!_isset($this->config->getUsername())) {
+        if( !empty($this->config->getUsername())) {
             $request->setAuth($this->config->getUsername(),$this->config->getPassword());
         }
         $response = $request->send();
@@ -247,7 +250,7 @@ class ResourceClient
     }
 
     public function getServiceUrl($uri) {
-        return $this->config->getBaseUrl() . ResourceClient::$URL_RESOURCE_SERVICE . encodeURIComponent($uri);
+        return $this->config->getBaseUrl() . ResourceClient::$URL_RESOURCE_SERVICE . urlencode($uri);
     }
 
 }

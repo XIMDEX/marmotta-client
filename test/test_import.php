@@ -24,13 +24,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require_once 'autoload.php';
+require_once '../vendor/autoload.php';
 
 use MarmottaClient\ClientConfiguration;
 use MarmottaClient\Clients\ImportClient;
 use MarmottaClient\Clients\ResourceClient;
 
-$config = new ClientConfiguration("http://localhost:8080/mtta");
+$config = new ClientConfiguration("http://localhost:8080/marmotta");
 
 $client = new ImportClient($config);
 
@@ -40,6 +40,7 @@ foreach($client->getSupportedTypes() as $type) {
     echo $type . ",";
 }
 echo "\n";
+
 
 
 // import a simple data set
@@ -54,10 +55,8 @@ sleep(1);
 $rclient = new ResourceClient($config);
 
 foreach($rclient->getResourceMetadata("http://example.com/resource/r1") as $property => $value) {
-    echo $property . " = " . $value[0] . "\n";
+
+
+    echo $property . " = " . $value[0]->getContent()    . "\n";
 }
-
-
-
-
-?>
+ 
