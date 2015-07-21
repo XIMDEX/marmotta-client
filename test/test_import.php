@@ -59,4 +59,3 @@ foreach($rclient->getResourceMetadata("http://example.com/resource/r1") as $prop
 
     echo $property . " = " . $value[0]->getContent()    . "\n";
 }
- 
