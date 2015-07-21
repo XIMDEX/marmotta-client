@@ -1,14 +1,14 @@
 # MarmottaClient
 
 
-PHP Marmotta Client
+PHP Client for Apache Marmotta
 
 
-Updated PHP Marmotta client
+Updated PHP Apache Marmotta client
 
 
 ## Install
 
 
-composer requiere "ximdex/marmota-client"
+composer require "ximdex/marmotta-client"
 
