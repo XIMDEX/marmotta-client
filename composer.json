@@ -1,0 +1,18 @@
+{
+  "name": "ximdex/MarmottaClient",
+  "description": "Marmotta PHP Client",
+  "minimum-stability": "dev",
+  "license": "Apache",
+  "authors": [
+    {
+      "name": "Ximdex",
+      "email": "acortes@ximdex.com"
+    }
+  ],
+  "require": {
+    "guzzle/http": "^3.9"
+  },
+  "autoload": {
+    "classmap":["lib/"]
+  }
+}
