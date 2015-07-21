@@ -10,7 +10,8 @@
     }
   ],
   "require": {
-    "guzzle/http": "^3.9"
+    "guzzle/http": "^3.9",
+    "easyrdf/easyrdf": "dev-master"
   },
   "autoload": {
     "classmap":["lib/"]
